@@ -1,10 +1,11 @@
 import React from 'react'
+import Bookcard from './BookCard'
 
 const BookLibrary = [
         {
             "title": "The Secrets of Power, Mastery, and Truth",
             "tagline": "The Best of William George Jordan",
-            "author": ["Brett McKay", "Kate McKay"],
+            "author": ["Brett McKay"],
             "year_published": 2019,
             "edition": 1,
             "ISBN13": "9780999322215",
@@ -107,7 +108,13 @@ function BookList() {
     
 
     return (
-        <div>BookList</div>
+        <div>
+            {BookLibrary.map(function(book){
+                return (
+                    <Bookcard key={book.ISBN13} book={book} />
+                );
+            })}
+        </div>
     )
 }
 
