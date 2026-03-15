@@ -1,8 +1,6 @@
 import React from 'react'
 
-
-function BookList() {
-    const BookLibrary = [
+const BookLibrary = [
         {
             "title": "The Secrets of Power, Mastery, and Truth",
             "tagline": "The Best of William George Jordan",
@@ -103,8 +101,10 @@ function BookList() {
             "pages": 147,
             "genre": "Buddhism",
         },
-
     ];
+
+function BookList() {
+    
 
     return (
         <div>BookList</div>
