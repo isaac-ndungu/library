@@ -108,7 +108,7 @@ function BookList() {
     
 
     return (
-        <div>
+        <div className='grid grid-cols-2 gap-6 max-w-5xl mx-auto p-8'> 
             {BookLibrary.map(function(book){
                 return (
                     <Bookcard key={book.ISBN13} book={book} />

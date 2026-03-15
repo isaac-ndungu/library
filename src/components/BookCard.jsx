@@ -5,18 +5,18 @@ function BookCard(props) {
   const book = props.book;
 
   return (
-    <div className='border-1 rounded-sm p-8 flex flex-col gap-4'>
-      <p className='font-bold uppercase mb-4'>{book.genre}</p>
+    <div className='border border-stone-300 rounded-lg p-8 flex flex-col gap-3 bg-white shadow-md'>
+      <p className='font-bold uppercase text-md tracking-wide text-orange-600'>{book.genre}</p>
 
-      <h3>{book.title}</h3>
-      <p>{book.tagline}</p>
-      <p>{book.author}</p>
-      <p>{book.year_published}</p>
+      <h3 className='text-xl font-bold text-stone-800 '>{book.title}</h3>
+      <p className='text-md italic text-stone-600'>{book.tagline}</p>
+      <p className='text-md font-semibold text-gray-700'>{book.author}</p>
+      <p className='text-xs text-stone-600'>{book.year_published}</p>
 
-      <div>
-        <p>{book.pages} pages</p>
-        <p>Edition {book.edition}</p>
-        <p>ISBN: {book.ISBN13}</p>
+      <div className='flex flex-wrap gap-2 pt-4 mt-auto border-t border-stone-200'>
+        <p className='text-sm text-stone-600 bg-stone-200 px-3 py-2 rounded-full'>{book.pages} pages</p>
+        <p className='text-sm text-stone-600 bg-stone-200 px-3 py-2 rounded-full'>Edition {book.edition}</p>
+        <p className='text-sm text-stone-600 bg-stone-200 px-3 py-2 rounded-full'>ISBN: {book.ISBN13}</p>
       </div>
 
     </div>
