@@ -5,12 +5,12 @@ function Search(props) {
     const genres = ['All', ...props.genres];
     
     return (
-    <div className='max-w-5xl mx-auto px-8 flex flex-col gap-4 '>
-        <div className='flex gap-4'>
+    <div className='max-w-5xl mx-auto px-8 flex flex-col gap-4 items-center'>
+        <div className='flex gap-4 w-full max-w-xl'>
             <input type="text" placeholder='Search by author or title' value={props.searchQuery} onChange={props.onSearchChange}
-                    className='w-full max-w-xl border border-stone-300 rounded-sm px-4 py-2 text-md text-stone-700 placeholder-stone-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 bg-stone-50' />
+                    className='w-full max-w-xl flex-1 border border-stone-300 rounded-sm px-4 py-2 text-md text-stone-700 placeholder-stone-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 bg-stone-50' />
             
-            <button onClick={props.onToggleForm} className='bg-orange-600 hover:bg-orange-700 text-white text-sm font-bold tracking-wide px-6 py-2 rounded-sm transition-colors'>
+            <button onClick={props.onToggleForm} className=' bg-orange-600 hover:bg-orange-700 text-white text-sm font-bold tracking-wide px-6 py-2 rounded-sm transition-colors'>
                 <i className="fa-solid fa-plus mr-1"></i>Add Book
             </button>
         </div>
