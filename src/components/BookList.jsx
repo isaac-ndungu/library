@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import Bookcard from './BookCard'
 import Search from './Search';
+import AddBookForm from './AddBookForm';
 
-const BookLibrary = [
+export const BookLibrary = [
         {
             "title": "The Secrets of Power, Mastery, and Truth",
             "tagline": "The Best of William George Jordan",
@@ -106,10 +107,32 @@ const BookLibrary = [
     ];
 
 function BookList() {
+    const [books, setBooks] = useState(BookLibrary);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedGenre, setSelectedGenre] = useState('All');
+    const [showForm, setShowForm] = useState(false);
+    
+    function handleAdd(newBook) {
+        setBooks(function(previousBooks){
+            return [newBook, ...previousBooks];
+        });
+        setShowForm(false);
+    }
 
-    const filteredBooks = BookLibrary.filter(function(book){
+    function handleDelete(ISBN13) {
+        setBooks(function(previousBooks){
+            return previousBooks.filter(function(book){
+                return book.ISBN13 !== ISBN13;
+            });
+        });
+    }
+
+    function handleToggleForm(){
+        setShowForm(!showForm);
+    }
+    
+    // filter books
+    const filteredBooks = books.filter(function(book){
         const queryMatch = book.title.toLowerCase().includes(searchQuery.toLowerCase()) || book.author.toLowerCase().includes(searchQuery.toLowerCase());
         const genreMatch = selectedGenre === 'All' || book.genre === selectedGenre;
         return queryMatch && genreMatch;
@@ -124,11 +147,17 @@ function BookList() {
 
     return (
         <div className="py-8">
-            <Search genres={genres} searchQuery={searchQuery} selectedGenre={selectedGenre} onSearchChange={(e) => setSearchQuery(e.target.value)} onGenreChange={(genre) => setSelectedGenre(genre)} />
+
+            <Search genres={genres} searchQuery={searchQuery} selectedGenre={selectedGenre} onSearchChange={(e) => setSearchQuery(e.target.value)} onGenreChange={(genre) => setSelectedGenre(genre)} onToggleForm={handleToggleForm} />
+            {/* Add book form */}
+            {showForm && (
+                <AddBookForm onAdd={handleAdd} />
+            )}
             <div className='grid grid-cols-2 gap-6 max-w-5xl mx-auto p-8'>
+                {/* Book cards */}
                 {filteredBooks.map(function(book){
                     return (
-                        <Bookcard key={book.ISBN13} book={book} />
+                        <Bookcard key={book.ISBN13} book={book} onDelete={handleDelete} />
                     );
                 })}
             </div>
@@ -140,3 +169,4 @@ function BookList() {
 }
 
 export default BookList
+

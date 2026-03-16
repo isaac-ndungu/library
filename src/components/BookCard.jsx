@@ -14,10 +14,14 @@ function BookCard(props) {
       <p className='text-xs text-stone-600'>{book.year_published}</p>
 
       <div className='flex flex-wrap gap-2 pt-4 mt-auto border-t border-stone-200'>
-        <p className='text-sm text-stone-600 bg-stone-200 px-3 py-2 rounded-full'>{book.pages} pages</p>
-        <p className='text-sm text-stone-600 bg-stone-200 px-3 py-2 rounded-full'>Edition {book.edition}</p>
-        <p className='text-sm text-stone-600 bg-stone-200 px-3 py-2 rounded-full'>ISBN: {book.ISBN13}</p>
+          <p className='text-sm text-stone-600 bg-stone-200 px-3 py-2 rounded-full'>{book.pages} pages</p>
+          <p className='text-sm text-stone-600 bg-stone-200 px-3 py-2 rounded-full'>Edition {book.edition}</p>
+          <p className='text-sm text-stone-600 bg-stone-200 px-3 py-2 rounded-full'>ISBN: {book.ISBN13}</p>
       </div>
+
+      <button onClick={function () { props.onDelete(book.ISBN13); }} className='mt-2 text-xs font-semibold text-stone-400 hover:text-red-500 transition-colors self-end px-2 py-1 border border-red-500 rounded-2xl'>
+        Remove
+      </button>
 
     </div>
   )

@@ -5,7 +5,7 @@ function Header() {
         <header className='border-b border-stone-200 bg-white'>
             <div className='max-w-5xl mx-auto px-8 py-5'>
                 <h1 className='text-4xl font-bold text-stone-800 tracking-wide'>ReadList</h1>
-                <p className='text-xs text-stone-400 tracking-widest uppercase'>Your Personal Library</p>
+                <p className='text-xs text-stone-400 tracking-widest'>Your Personal Library</p>
             </div>
         </header>
     )
