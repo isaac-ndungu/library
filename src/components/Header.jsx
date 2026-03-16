@@ -2,7 +2,7 @@ import React from 'react'
 
 function Header() {
     return (
-        <header className='border-b border-stone-200 bg-white'>
+        <header className='border-b border-stone-200 bg-white text-center'>
             <div className='max-w-5xl mx-auto px-8 py-5 textupda-center'>
                 <h1 className='text-4xl font-bold text-stone-800 tracking-wide'>ReadList</h1>
                 <p className='text-xs text-stone-400 tracking-widest'>Your Personal Library</p>
