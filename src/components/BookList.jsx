@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Bookcard from './BookCard'
+import Search from './Search';
 
 const BookLibrary = [
         {
             "title": "The Secrets of Power, Mastery, and Truth",
             "tagline": "The Best of William George Jordan",
-            "author": ["Brett McKay"],
+            "author": "Brett McKay",
             "year_published": 2019,
             "edition": 1,
             "ISBN13": "9780999322215",
@@ -105,15 +106,35 @@ const BookLibrary = [
     ];
 
 function BookList() {
-    
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedGenre, setSelectedGenre] = useState('All');
+
+    const filteredBooks = BookLibrary.filter(function(book){
+        const queryMatch = book.title.toLowerCase().includes(searchQuery.toLowerCase()) || book.author.toLowerCase().includes(searchQuery.toLowerCase());
+        const genreMatch = selectedGenre === 'All' || book.genre === selectedGenre;
+        return queryMatch && genreMatch;
+    })
+
+    const genres = [];
+    BookLibrary.forEach((book) =>{
+        if (!genres.includes(book.genre)) {
+            genres.push(book.genre)
+        }
+    })    
 
     return (
-        <div className='grid grid-cols-2 gap-6 max-w-5xl mx-auto p-8'> 
-            {BookLibrary.map(function(book){
-                return (
-                    <Bookcard key={book.ISBN13} book={book} />
-                );
-            })}
+        <div className="py-8">
+            <Search genres={genres} searchQuery={searchQuery} selectedGenre={selectedGenre} onSearchChange={(e) => setSearchQuery(e.target.value)} onGenreChange={(genre) => setSelectedGenre(genre)} />
+            <div className='grid grid-cols-2 gap-6 max-w-5xl mx-auto p-8'>
+                {filteredBooks.map(function(book){
+                    return (
+                        <Bookcard key={book.ISBN13} book={book} />
+                    );
+                })}
+            </div>
+            {filteredBooks.length === 0 && (
+                <p className='text-center text-gray-400 text-sm mt-12'>No books found.</p>
+            )}
         </div>
     )
 }
