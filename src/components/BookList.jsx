@@ -1,149 +1,154 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Bookcard from './BookCard'
 import Search from './Search';
 import AddBookForm from './AddBookForm';
 
 export const BookLibrary = [
-        {
-            "title": "The Secrets of Power, Mastery, and Truth",
-            "tagline": "The Best of William George Jordan",
-            "author": "Brett McKay",
-            "year_published": 2019,
-            "edition": 1,
-            "ISBN13": "9780999322215",
-            "pages": 89,
-            "genre": "Philosophy",
-        },
-        {
-            "title": "The Clean Coder",
-            "tagline": "A Code of Conduct for Professional Programmers",
-            "author": "Robert C. Martin",
-            "year_published": 2011,
-            "edition": 1,
-            "ISBN13": "9780137081073",
-            "pages": 204,
-            "genre": "Programming",
-        },
-        {
-            "title": "Starry Messenger",
-            "tagline": "Cosmic Perspectives on Civilization",
-            "author": "Neil deGrasse Tyson",
-            "year_published": 2022,
-            "edition": 1,
-            "ISBN13": "9781250861504",
-            "pages": 219,
-            "genre": "Science",
-        },
-        {
-            "title": "Grokking Algorithms",
-            "tagline": "An Illustrated Guide for Programmers and Other Curious People",
-            "author": "Aditya Y. Bhargava",
-            "year_published": 2016,
-            "edition": 1,
-            "ISBN13": "9781617292231",
-            "pages": 233,
-            "genre": "Programming",
-        },
-        {
-            "title": "The Laws of Human Nature",
-            "tagline": null,
-            "author": "Robert Greene",
-            "year_published": 2018,
-            "edition": 1,
-            "ISBN13": "9780143111375",
-            "pages": 586,
-            "genre": "Psychology",
-        },
-        {
-            "title": "Homo Deus",
-            "tagline": "A Brief History of Tomorrow",
-            "author": "Yuval Noah Harari",
-            "year_published": 2018,
-            "edition": 1,
-            "ISBN13": "9780062464347",
-            "pages": 402,
-            "genre": "Science",
-        },
-        {
-            "title": "Sapiens",
-            "tagline": "A Brief History of Humankind",
-            "author": "Yuval Noah Harari",
-            "year_published": 2015,
-            "edition": 1,
-            "ISBN13": "9780062316110",
-            "pages": 416,
-            "genre": "Science",
-        },
-        {
-            "title": "The Wise Heart",
-            "tagline": "A Guide to the Universal Teachings of Buddhist Psychology",
-            "author": "Jack Kornfield",
-            "year_published": 2009,
-            "edition": 1,
-            "ISBN13": "9780553382334",
-            "pages": 402,
-            "genre": "Buddhism",
-        },
-        {
-            "title": "Anger",
-            "tagline": "Wisdom for Cooling the Flames",
-            "author": "Thich Nhat Hanh",
-            "year_published": 2002,
-            "edition": 1,
-            "ISBN13": "9781573229371",
-            "pages": 227,
-            "genre": "Buddhism",
-        },
-        {
-            "title": "Breath! You Are Alive",
-            "tagline": "Sutra on the Full Awareness of Breathing",
-            "author": "Thich Nhat Hanh",
-            "year_published": 1996,
-            "edition": 1,
-            "ISBN13": "9781888375848",
-            "pages": 147,
-            "genre": "Buddhism",
-        },
-    ];
+    {
+        "title": "The Secrets of Power, Mastery, and Truth",
+        "tagline": "The Best of William George Jordan",
+        "author": "Brett McKay",
+        "year_published": 2019,
+        "edition": 1,
+        "ISBN13": "9780999322215",
+        "pages": 89,
+        "genre": "Philosophy",
+    },
+    {
+        "title": "The Clean Coder",
+        "tagline": "A Code of Conduct for Professional Programmers",
+        "author": "Robert C. Martin",
+        "year_published": 2011,
+        "edition": 1,
+        "ISBN13": "9780137081073",
+        "pages": 204,
+        "genre": "Programming",
+    },
+    {
+        "title": "Starry Messenger",
+        "tagline": "Cosmic Perspectives on Civilization",
+        "author": "Neil deGrasse Tyson",
+        "year_published": 2022,
+        "edition": 1,
+        "ISBN13": "9781250861504",
+        "pages": 219,
+        "genre": "Science",
+    },
+    {
+        "title": "Grokking Algorithms",
+        "tagline": "An Illustrated Guide for Programmers and Other Curious People",
+        "author": "Aditya Y. Bhargava",
+        "year_published": 2016,
+        "edition": 1,
+        "ISBN13": "9781617292231",
+        "pages": 233,
+        "genre": "Programming",
+    },
+    {
+        "title": "The Laws of Human Nature",
+        "tagline": null,
+        "author": "Robert Greene",
+        "year_published": 2018,
+        "edition": 1,
+        "ISBN13": "9780143111375",
+        "pages": 586,
+        "genre": "Psychology",
+    },
+    {
+        "title": "Homo Deus",
+        "tagline": "A Brief History of Tomorrow",
+        "author": "Yuval Noah Harari",
+        "year_published": 2018,
+        "edition": 1,
+        "ISBN13": "9780062464347",
+        "pages": 402,
+        "genre": "Science",
+    },
+    {
+        "title": "Sapiens",
+        "tagline": "A Brief History of Humankind",
+        "author": "Yuval Noah Harari",
+        "year_published": 2015,
+        "edition": 1,
+        "ISBN13": "9780062316110",
+        "pages": 416,
+        "genre": "Science",
+    },
+    {
+        "title": "The Wise Heart",
+        "tagline": "A Guide to the Universal Teachings of Buddhist Psychology",
+        "author": "Jack Kornfield",
+        "year_published": 2009,
+        "edition": 1,
+        "ISBN13": "9780553382334",
+        "pages": 402,
+        "genre": "Buddhism",
+    },
+    {
+        "title": "Anger",
+        "tagline": "Wisdom for Cooling the Flames",
+        "author": "Thich Nhat Hanh",
+        "year_published": 2002,
+        "edition": 1,
+        "ISBN13": "9781573229371",
+        "pages": 227,
+        "genre": "Buddhism",
+    },
+    {
+        "title": "Breath! You Are Alive",
+        "tagline": "Sutra on the Full Awareness of Breathing",
+        "author": "Thich Nhat Hanh",
+        "year_published": 1996,
+        "edition": 1,
+        "ISBN13": "9781888375848",
+        "pages": 147,
+        "genre": "Buddhism",
+    },
+];
 
 function BookList() {
-    const [books, setBooks] = useState(BookLibrary);
-    const [searchQuery, setSearchQuery] = useState('');
+    const savedBooks = JSON.parse(localStorage.getItem('readlist_books'));
+    const [books, setBooks] = useState(savedBooks || BookLibrary); const [searchQuery, setSearchQuery] = useState('');
+
     const [selectedGenre, setSelectedGenre] = useState('All');
     const [showForm, setShowForm] = useState(false);
-    
+
+    useEffect(function () {
+        localStorage.setItem('readlist_books', JSON.stringify(books));
+    }, [books]);
+
     function handleAdd(newBook) {
-        setBooks(function(previousBooks){
+        setBooks(function (previousBooks) {
             return [newBook, ...previousBooks];
         });
         setShowForm(false);
     }
 
     function handleDelete(ISBN13) {
-        setBooks(function(previousBooks){
-            return previousBooks.filter(function(book){
+        setBooks(function (previousBooks) {
+            return previousBooks.filter(function (book) {
                 return book.ISBN13 !== ISBN13;
             });
         });
     }
 
-    function handleToggleForm(){
+    function handleToggleForm() {
         setShowForm(!showForm);
     }
-    
+
     // filter books
-    const filteredBooks = books.filter(function(book){
+    const filteredBooks = books.filter(function (book) {
         const queryMatch = book.title.toLowerCase().includes(searchQuery.toLowerCase()) || book.author.toLowerCase().includes(searchQuery.toLowerCase());
         const genreMatch = selectedGenre === 'All' || book.genre === selectedGenre;
         return queryMatch && genreMatch;
     })
 
     const genres = [];
-    BookLibrary.forEach((book) =>{
+    BookLibrary.forEach((book) => {
         if (!genres.includes(book.genre)) {
             genres.push(book.genre)
         }
-    })    
+    })
 
     return (
         <div className="py-8">
@@ -155,7 +160,7 @@ function BookList() {
             )}
             <div className='grid grid-cols-2 gap-6 max-w-5xl mx-auto p-8'>
                 {/* Book cards */}
-                {filteredBooks.map(function(book){
+                {filteredBooks.map(function (book) {
                     return (
                         <Bookcard key={book.ISBN13} book={book} onDelete={handleDelete} />
                     );
