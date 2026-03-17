@@ -41,8 +41,8 @@ ReadList is a component-driven book management app designed to make organizing a
 
 1. Clone the repository
 ```bash
-git clone git@github.com:your-username/readlist.git
-```
+git@github.com:isaac-ndungu/library.git
+``` 
 
 2. Install dependencies
 ```bash
